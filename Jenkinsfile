@@ -10,13 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh './mvnw clean install'
+                bat './mvnw clean install'
             }
         }
 
-        stage('Test') {
+        stage('Run') {
             steps {
-                sh './mvnw test'
+                bat './mvnw spring-boot:run'
             }
         }
     }
