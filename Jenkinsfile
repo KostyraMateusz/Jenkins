@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                bat './mvnw spring-boot:run'
+                bat 'start /B ./mvnw spring-boot:run'
             }
         }
     }
