@@ -4,14 +4,16 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git 'https://github.com/KostyraMateusz/Jenkins'
             }
         }
+
         stage('Build') {
             steps {
-                sh './mvnw clean compile'
+                sh './mvnw clean install'
             }
         }
+
         stage('Test') {
             steps {
                 sh './mvnw test'
