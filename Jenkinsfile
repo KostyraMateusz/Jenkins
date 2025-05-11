@@ -22,6 +22,7 @@ pipeline {
 	
 	stage('Test Results') {
             steps {
+		unstash 'test-results'
                 junit 'target/surefire-reports/*.xml'
             }
         }
