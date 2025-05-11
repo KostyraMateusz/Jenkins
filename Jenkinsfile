@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
-		sh 'chmod +x ./mvnw'
+                sh 'chmod +x ./mvnw'
                 sh './mvnw clean install'
             }
         }
@@ -32,6 +32,14 @@ pipeline {
             steps {
                 unstash 'test-results'
                 junit 'target/surefire-reports/*.xml'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=DodawanieJava -Dsonar.projectName=DodawanieJava'
+                }
             }
         }
     }
