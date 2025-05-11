@@ -17,7 +17,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh 'start /B ./mvnw spring-boot:run'
+                sh 'nohup ./mvnw spring-boot:run &'
             }
         }
 
