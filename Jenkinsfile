@@ -19,5 +19,11 @@ pipeline {
                 bat 'start /B ./mvnw spring-boot:run'
             }
         }
+	
+	stage('Test Results') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
     }
 }
