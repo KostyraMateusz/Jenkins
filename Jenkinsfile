@@ -10,19 +10,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat './mvnw clean install'
+                sh './mvnw clean install'
             }
         }
 
         stage('Run') {
             steps {
-                bat 'start /B ./mvnw spring-boot:run'
+                sh 'start /B ./mvnw spring-boot:run'
             }
         }
 
         stage('Test') {
             steps {
-                bat './mvnw test'
+                sh './mvnw test'
                 stash includes: 'target/surefire-reports/*.xml', name: 'test-results'
             }
         }
