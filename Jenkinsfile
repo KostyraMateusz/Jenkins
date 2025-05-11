@@ -19,10 +19,17 @@ pipeline {
                 bat 'start /B ./mvnw spring-boot:run'
             }
         }
-	
-	stage('Test Results') {
+
+        stage('Test') {
             steps {
-		unstash 'test-results'
+                bat './mvnw test'
+                stash includes: 'target/surefire-reports/*.xml', name: 'test-results'
+            }
+        }
+
+        stage('Test Results') {
+            steps {
+                unstash 'test-results'
                 junit 'target/surefire-reports/*.xml'
             }
         }
